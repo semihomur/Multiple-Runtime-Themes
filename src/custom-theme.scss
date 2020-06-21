@@ -1,0 +1,63 @@
+//NEBULAR
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes/default';
+@import '~@nebular/theme/styles/themes/dark';
+
+$nb-themes: nb-register-theme((
+  text-basic-color: color-basic-800, // some styles we changed
+  text-disabled-color: color-basic-600,
+), default-theme, default);
+
+$nb-themes: nb-register-theme((
+  text-basic-color: color-basic-100, // some styles we changed
+  text-disabled-color: color-basic-600,
+), dark-theme, dark);
+
+@import '~@nebular/theme/styles/globals';
+@include nb-install() {
+  @include nb-theme-global();
+};
+
+//MATERIAL
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+@mixin global-theme($theme) {
+    $primary: map-get($theme, primary );
+    $accent: map-get($theme, accent );
+    $warn: map-get($theme, warn );
+    $foreground: map-get($theme, foreground );
+    $background: map-get($theme, background );
+}
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$DynamicComponents-primary: mat-palette($mat-indigo);
+$DynamicComponents-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$DynamicComponents-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$DynamicComponents-theme: mat-light-theme($DynamicComponents-primary, $DynamicComponents-accent, $DynamicComponents-warn);
+$DynamicComponents-dark-theme: mat-dark-theme($DynamicComponents-primary, $DynamicComponents-accent, $DynamicComponents-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+.default-theme {
+    @include angular-material-theme($DynamicComponents-theme);
+    @include global-theme($DynamicComponents-theme);
+}
+
+.dark-theme {
+    @include angular-material-theme($DynamicComponents-dark-theme);
+    @include global-theme($DynamicComponents-dark-theme);
+}

@@ -1,0 +1,64 @@
+<nb-layout>
+  <nb-layout-column>
+    <div class="container my-5">
+      <div class="row my-5">
+        <div class="col-sm-12">
+          <mat-card class="w-100 d-flex justify-content-center">
+            <mat-form-field>
+              <mat-label>Team #1</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let team of teams" [value]="team.value" (click)="changeTheme(team.value)">{{team.viewValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-card>
+        </div>
+      </div>
+      <div class="row my-5">
+        <div class="col-sm-6">
+          <h5 class="text-center">Angular Material UI Components</h5>
+          <mat-card>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker Ui #picker></mat-datepicker>
+            </mat-form-field>
+          </mat-card>
+          <mat-card class="my-5">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Text field">
+            </mat-form-field>
+          </mat-card>
+          <mat-card class="my-5">
+            <mat-list role="list">
+              <mat-list-item role="listitem">Lemon</mat-list-item>
+              <mat-list-item role="listitem">Raspberries</mat-list-item>
+              <mat-list-item role="listitem">Strawberries</mat-list-item>
+            </mat-list>
+          </mat-card>
+        </div>
+    
+        <div class="col-sm-6">
+          <h5 class="text-center">Nebular UI Components</h5>
+          <nb-card>
+            <nb-card-body>
+              <input nbInput [nbDatepicker]="datepicker">
+              <nb-datepicker #datepicker></nb-datepicker>
+            </nb-card-body>
+          </nb-card>
+          <nb-card class="my-5">
+            <nb-card-body>
+              <input type="text" nbInput placeholder="Text field">
+            </nb-card-body>
+          </nb-card>
+          <nb-card class="my-5">
+            <nb-list>
+              <nb-list-item *ngFor="let fruit of ['Lemons','Raspberries','Strawberries']">
+                {{ fruit }}
+              </nb-list-item>
+            </nb-list>
+          </nb-card>
+        </div>
+      </div>
+  </div>
+  </nb-layout-column>
+</nb-layout>
